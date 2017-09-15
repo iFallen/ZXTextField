@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.textField3.text = "123%^&HJfds789"
         self.textField1.inputType = .telNum
         self.textField1.placeholder = "Tel:"
         self.textField1.zxDelegate = self
@@ -27,6 +28,7 @@ class ViewController: UIViewController {
         self.textField2.inputType = .alphabet
         self.textField2.placeholder = "Alphabet:"
         self.textField2.placeholderColor = UIColor.purple
+        self.textField2.canCopyPaste = false
         
         self.textFieldCharacters.inputType = .characters
         self.textField3.delegate = self

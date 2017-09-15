@@ -33,7 +33,6 @@ class ZXTextField: UITextField {
     
     weak var zxDelegate:ZXTextFieldDelegate?
     
-    
     var inputType:ZXTextFieldType = .none {
         didSet{
             switch inputType {
@@ -49,6 +48,8 @@ class ZXTextField: UITextField {
             }
         }
     }
+    
+    var canCopyPaste:Bool = true
     
     @IBInspectable var maxLength:Int = 0
     
@@ -209,10 +210,11 @@ class ZXTextField: UITextField {
         }
     }
     
-    //override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
-    //    //UIMenuController.shared.isMenuVisible = false
-    //    return false
-    //}
+    override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        //UIMenuController.shared.isMenuVisible = false
+        //return false
+        return canCopyPaste
+    }
     override func paste(_ sender: Any?) {
         if inputType != .none,let string = UIPasteboard.general.string,string.characters.count > 0 {
             let regularString = self.clearText(string)

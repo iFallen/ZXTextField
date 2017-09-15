@@ -23,9 +23,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cyQ-O2-As1" customClass="ZXTextField" customModule="ZXTextField" customModuleProvider="target">
-                                <rect key="frame" x="137" y="152" width="100" height="30"/>
+                                <rect key="frame" x="87" y="152" width="200" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="zMe-YH-k86"/>
+                                    <constraint firstAttribute="width" constant="200" id="zMe-YH-k86"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -37,9 +37,9 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dSN-U0-AxF" customClass="ZXTextField" customModule="ZXTextField" customModuleProvider="target">
-                                <rect key="frame" x="137" y="204" width="100" height="30"/>
+                                <rect key="frame" x="87" y="204" width="200" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="ODe-Eq-HPN"/>
+                                    <constraint firstAttribute="width" constant="200" id="ODe-Eq-HPN"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -51,9 +51,9 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SYO-iM-11V" customClass="ZXTextField" customModule="ZXTextField" customModuleProvider="target">
-                                <rect key="frame" x="137" y="254" width="100" height="30"/>
+                                <rect key="frame" x="87" y="254" width="200" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="9vI-nC-d2A"/>
+                                    <constraint firstAttribute="width" constant="200" id="9vI-nC-d2A"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -75,9 +75,9 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9gi-4R-PMC">
-                                <rect key="frame" x="137" y="304" width="100" height="30"/>
+                                <rect key="frame" x="87" y="304" width="200" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="U0P-Uc-kJd"/>
+                                    <constraint firstAttribute="width" constant="200" id="U0P-Uc-kJd"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
