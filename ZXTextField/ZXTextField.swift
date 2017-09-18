@@ -141,70 +141,81 @@ class ZXTextField: UITextField {
     
     fileprivate var lastText:String?
     @objc fileprivate func textDidChange(_ notification:Notification) {
-        if inputType == .none {
-            return
-        }
-        if maxLength > 0,let textf = notification.object as? UITextField,textf == self {
+        if let textf = notification.object as? UITextField,textf == self {
             if let text = textf.text {
-                if let selectedRange = textf.markedTextRange,textf.position(from: selectedRange.start, offset: 0) != nil {//存在高亮不处理
-                    if let lastText = lastText {
-                        self.lastText = self.clearText(lastText)
-                    }
-                    self.text = lastText
-                    return
-                }
-                var newText = text
-                if let lastText = lastText {
-                    if text.characters.count > lastText.characters.count {
-                        let startIndex = text.startIndex
-                        let fromIndex = text.index(startIndex, offsetBy: lastText.characters.count)
-                        newText = text.substring(from: fromIndex)
-                    } else {
-                        if text.isEmpty {
-                            self.lastText = nil
-                        } else {
-                            self.lastText = newText
+                if inputType == .none {
+                    if maxLength > 0 {
+                        if text.characters.count == maxLength {
+                            zxDelegate?.textFieldDidReachTheMaxLength(self)
+                        } else if text.characters.count > maxLength {
+                            textf.text = text.substring(to: text.index(text.startIndex, offsetBy: maxLength))
                         }
+                    }
+                } else {
+                    if let selectedRange = textf.markedTextRange,textf.position(from: selectedRange.start, offset: 0) != nil {//存在高亮不处理
+                        if let lastText = lastText {
+                            self.lastText = self.clearText(lastText)
+                        }
+                        self.text = lastText
                         return
                     }
-                }
-                if newText.characters.count > 0 {
-                    switch inputType {
-                    case .number,.telNum:
-                        let predicate = NSPredicate.init(format: "SELF MATCHES %@",ZXNUMBERS)
-                        if !predicate.evaluate(with: newText) {
-                            textf.text = lastText
+                    var newText = text
+                    if let lastText = lastText {
+                        if text.characters.count > lastText.characters.count {
+                            let startIndex = text.startIndex
+                            let fromIndex = text.index(startIndex, offsetBy: lastText.characters.count)
+                            newText = text.substring(from: fromIndex)
                         } else {
-                            //newText.characters.count == 1 [except paste action]
-                            if inputType == .telNum,lastText == nil,newText.characters.count == 1,newText != "1" {
-                                textf.text = nil
-                                lastText = nil
+                            if text.isEmpty {
+                                self.lastText = nil
+                            } else {
+                                self.lastText = newText
                             }
+                            return
                         }
-                    case .alphabet:
-                        let predicate = NSPredicate.init(format: "SELF MATCHES %@",ZXALPHABET)
-                        if !predicate.evaluate(with: newText) {
-                            textf.text = lastText
-                        }
-                    case .characters:
-                        let predicate = NSPredicate.init(format: "SELF MATCHES %@",ZXCHARS)
-                        if !predicate.evaluate(with: newText) {
-                            textf.text = lastText
-                        }
-                    default:
-                        break
                     }
-
-                } else {
-                    lastText = nil
-                }
-                if text.characters.count == maxLength {
-                    zxDelegate?.textFieldDidReachTheMaxLength(self)
-                } else if text.characters.count > maxLength {
-                    textf.text = text.substring(to: text.index(text.startIndex, offsetBy: maxLength))
-                }
-                if let text2 = textf.text,!text2.isEmpty {
-                    lastText = text2
+                    if newText.characters.count > 0 {
+                        switch inputType {
+                        case .number,.telNum:
+                            let predicate = NSPredicate.init(format: "SELF MATCHES %@",ZXNUMBERS)
+                            if !predicate.evaluate(with: newText) {
+                                textf.text = lastText
+                            } else {
+                                //newText.characters.count == 1 [except paste action]
+                                if inputType == .telNum,lastText == nil,newText.characters.count == 1,newText != "1" {
+                                    textf.text = nil
+                                    lastText = nil
+                                }
+                            }
+                        case .alphabet:
+                            let predicate = NSPredicate.init(format: "SELF MATCHES %@",ZXALPHABET)
+                            if !predicate.evaluate(with: newText) {
+                                textf.text = lastText
+                            }
+                        case .characters:
+                            let predicate = NSPredicate.init(format: "SELF MATCHES %@",ZXCHARS)
+                            if !predicate.evaluate(with: newText) {
+                                textf.text = lastText
+                            }
+                        default:
+                            break
+                        }
+                        
+                    } else {
+                        lastText = nil
+                    }
+                    
+                    if maxLength > 0 {
+                        if text.characters.count == maxLength {
+                            zxDelegate?.textFieldDidReachTheMaxLength(self)
+                        } else if text.characters.count > maxLength {
+                            textf.text = text.substring(to: text.index(text.startIndex, offsetBy: maxLength))
+                        }
+                    }
+                    
+                    if let text2 = textf.text,!text2.isEmpty {
+                        lastText = text2
+                    }
                 }
             }
         }
